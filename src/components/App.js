@@ -4,11 +4,28 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"; gsap.registerPlugin(ScrollTr
 import Landing from './Landing'
 
 const App = (props) => {
+   // foreground
+   const [foregroundImage, setForegroundImage] = useState('/images/foreground.png')
+   const [showForeground, setShowForeground] = useState(true)
+   // background
+   const [backgroundImage, setBackgroundImage] = useState('/images/forest.png')
+   const [showBackground, setShowBackground] = useState(true)
+   // bear
+   const [bearImage, setBearImage] = useState('/images/bear.png')
+   const [showBear, setShowBear] = useState(true)
+   // midground
+   const [midgroundImage, setMidGroundImage] = useState('/images/boulder2.png')
+   const [showMidground, setShowMidground] = useState(true)
+   // frame
+   const [frameImage, setFrameImage] = useState('/images/frame.png')
+   const [showFrame, setShowFrame] = useState(true)
+
    const container = useRef()
    const birds = useRef()
    const foreground = useRef()
    const forest = useRef()
    const bear = useRef()
+   const boulder = useRef()
    const cloudA = useRef()
    const cloudB = useRef()
    const cloudC = useRef()
@@ -69,6 +86,18 @@ const App = (props) => {
             start: "top top",
             toggleActions: "restart pause resume pause",
             pin: true,
+            scrub: 6,
+            // markers: true
+         },
+         x: '-100vw',
+      })
+      // BOULDER ANIMATION
+      gsap.to(boulder.current, {
+         scrollTrigger: {
+            trigger: container.current,
+            start: "top top",
+            toggleActions: "restart pause resume pause",
+            pin: true,
             scrub: 5,
             // markers: true
          },
@@ -80,19 +109,41 @@ const App = (props) => {
    return (
       <>
 
-         <Landing />
+         <Landing
+            foregroundImage={{ get: foregroundImage, set: setForegroundImage, show: showForeground, setShow: setShowForeground }}
+            backgroundImage={{ get: backgroundImage, set: setBackgroundImage, show: showBackground, setShow: setShowBackground }}
+            midgroundImage={{ get: midgroundImage, set: setMidGroundImage, show: showMidground, setShow: setShowMidground }}
+            bearImage={{ get: bearImage, set: setBearImage, show: showBear, setShow: setShowBear }}
+            frameImage={{ get: frameImage, set: setFrameImage, show: showFrame, setShow: setShowFrame }}
+         />
 
-         <div ref={container} className="mx-auto bg-gray-200 overflow-x-scroll relative h-screen" >
+         <div ref={container} className="mx-auto bg-gray-200 overflow-x-scroll relative h-screen bg-cover" >
 
-            {/* <img src="/images/frame.png" className="absolute top-0 left-0  min-h-screen z-20"
-               style={{ height: '108vh', width: '108vw', maxWidth: '108vw', left: '-4vw', top: '-8vh' }}
-            /> */}
+            {/* FRAME */}
+            <div className={showFrame ? '' : 'hidden'}>
+               <img src={frameImage} className="absolute top-0 left-0  min-h-screen z-40"
+                  style={{ height: '108vh', width: '108vw', maxWidth: '108vw', left: '-4vw', top: '-8vh' }}
+               />
+            </div>
 
             {/* BG */}
-            <img ref={forest} src="/images/forest.png" className="h-full absolute inset-0" style={{ width: '200vw', minWidth: '200vw', right: '-100vw' }} />
+            <div className={showBackground ? '' : 'hidden'}>
+               <div ref={forest}
+                  className="h-full absolute inset-0 bg-contain bg-center"
+                  style={{
+                     width: '200vw',
+                     minWidth: '200vw',
+                     right: '-100vw',
+                     backgroundImage: `url(${backgroundImage})`,
+
+                  }}
+               />
+            </div>
 
             {/* FOREGROUND */}
-            <img ref={foreground} src="/images/foreground.png" className="h-auto absolute bottom-0 z-10" style={{ width: '110vw', minWidth: '110vw', left: '0' }} />
+            <div className={showForeground ? '' : 'hidden'}>
+               <img ref={foreground} src={foregroundImage} className="h-auto absolute bottom-0 z-30" style={{ width: '110vw', minWidth: '110vw', left: '0' }} />
+            </div>
 
             {/* CLOUDS */}
             <img ref={cloudA} src="/images/cloud.png" className="absolute w-60 h-auto" />
@@ -103,7 +154,14 @@ const App = (props) => {
             <img ref={birds} src="/images/birds.png" className="absolute w-60 h-auto" style={{ bottom: '600px', left: '0' }} />
 
             {/* BEAR */}
-            <img ref={bear} src="/images/bear.png" className="absolute h-60 w-auto" style={{ bottom: '50px', right: '-50%' }} />
+            <div className={showBear ? '' : 'hidden'}>
+               <img ref={bear} src={bearImage} className="absolute h-60 w-auto z-10" style={{ bottom: '50px', right: '-30%' }} />
+            </div>
+
+            {/* MIDGROUND */}
+            <div className={showMidground ? '' : 'hidden'}>
+               <img ref={boulder} src={midgroundImage} className="absolute h-72 w-auto z-20" style={{ bottom: '0', right: '-50%' }} />
+            </div>
          </div >
       </>
    )

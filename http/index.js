@@ -17,6 +17,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gsap/ScrollTrigger */ "./node_modules/gsap/ScrollTrigger.js");
 /* harmony import */ var _Landing__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Landing */ "./src/components/Landing.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -27,11 +39,67 @@ gsap__WEBPACK_IMPORTED_MODULE_1__.gsap.registerPlugin(gsap_ScrollTrigger__WEBPAC
 
 
 var App = function App(props) {
+  // foreground
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('/images/foreground.png'),
+      _useState2 = _slicedToArray(_useState, 2),
+      foregroundImage = _useState2[0],
+      setForegroundImage = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState4 = _slicedToArray(_useState3, 2),
+      showForeground = _useState4[0],
+      setShowForeground = _useState4[1]; // background
+
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('/images/forest.png'),
+      _useState6 = _slicedToArray(_useState5, 2),
+      backgroundImage = _useState6[0],
+      setBackgroundImage = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState8 = _slicedToArray(_useState7, 2),
+      showBackground = _useState8[0],
+      setShowBackground = _useState8[1]; // bear
+
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('/images/bear.png'),
+      _useState10 = _slicedToArray(_useState9, 2),
+      bearImage = _useState10[0],
+      setBearImage = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState12 = _slicedToArray(_useState11, 2),
+      showBear = _useState12[0],
+      setShowBear = _useState12[1]; // midground
+
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('/images/boulder2.png'),
+      _useState14 = _slicedToArray(_useState13, 2),
+      midgroundImage = _useState14[0],
+      setMidGroundImage = _useState14[1];
+
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState16 = _slicedToArray(_useState15, 2),
+      showMidground = _useState16[0],
+      setShowMidground = _useState16[1]; // frame
+
+
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('/images/frame.png'),
+      _useState18 = _slicedToArray(_useState17, 2),
+      frameImage = _useState18[0],
+      setFrameImage = _useState18[1];
+
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState20 = _slicedToArray(_useState19, 2),
+      showFrame = _useState20[0],
+      setShowFrame = _useState20[1];
+
   var container = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var birds = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var foreground = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var forest = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var bear = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var boulder = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var cloudA = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var cloudB = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var cloudC = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
@@ -90,6 +158,18 @@ var App = function App(props) {
         start: "top top",
         toggleActions: "restart pause resume pause",
         pin: true,
+        scrub: 6 // markers: true
+
+      },
+      x: '-100vw'
+    }); // BOULDER ANIMATION
+
+    gsap__WEBPACK_IMPORTED_MODULE_1__.gsap.to(boulder.current, {
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top top",
+        toggleActions: "restart pause resume pause",
+        pin: true,
         scrub: 5 // markers: true
 
       },
@@ -97,27 +177,77 @@ var App = function App(props) {
     });
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Landing__WEBPACK_IMPORTED_MODULE_3__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Landing__WEBPACK_IMPORTED_MODULE_3__.default, {
+      foregroundImage: {
+        get: foregroundImage,
+        set: setForegroundImage,
+        show: showForeground,
+        setShow: setShowForeground
+      },
+      backgroundImage: {
+        get: backgroundImage,
+        set: setBackgroundImage,
+        show: showBackground,
+        setShow: setShowBackground
+      },
+      midgroundImage: {
+        get: midgroundImage,
+        set: setMidGroundImage,
+        show: showMidground,
+        setShow: setShowMidground
+      },
+      bearImage: {
+        get: bearImage,
+        set: setBearImage,
+        show: showBear,
+        setShow: setShowBear
+      },
+      frameImage: {
+        get: frameImage,
+        set: setFrameImage,
+        show: showFrame,
+        setShow: setShowFrame
+      }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       ref: container,
-      className: "mx-auto bg-gray-200 overflow-x-scroll relative h-screen",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-        ref: forest,
-        src: "/images/forest.png",
-        className: "h-full absolute inset-0",
-        style: {
-          width: '200vw',
-          minWidth: '200vw',
-          right: '-100vw'
-        }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-        ref: foreground,
-        src: "/images/foreground.png",
-        className: "h-auto absolute bottom-0 z-10",
-        style: {
-          width: '110vw',
-          minWidth: '110vw',
-          left: '0'
-        }
+      className: "mx-auto bg-gray-200 overflow-x-scroll relative h-screen bg-cover",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: showFrame ? '' : 'hidden',
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+          src: frameImage,
+          className: "absolute top-0 left-0  min-h-screen z-40",
+          style: {
+            height: '108vh',
+            width: '108vw',
+            maxWidth: '108vw',
+            left: '-4vw',
+            top: '-8vh'
+          }
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: showBackground ? '' : 'hidden',
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          ref: forest,
+          className: "h-full absolute inset-0 bg-contain bg-center",
+          style: {
+            width: '200vw',
+            minWidth: '200vw',
+            right: '-100vw',
+            backgroundImage: "url(".concat(backgroundImage, ")")
+          }
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: showForeground ? '' : 'hidden',
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+          ref: foreground,
+          src: foregroundImage,
+          className: "h-auto absolute bottom-0 z-30",
+          style: {
+            width: '110vw',
+            minWidth: '110vw',
+            left: '0'
+          }
+        })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
         ref: cloudA,
         src: "/images/cloud.png",
@@ -146,14 +276,28 @@ var App = function App(props) {
           bottom: '600px',
           left: '0'
         }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-        ref: bear,
-        src: "/images/bear.png",
-        className: "absolute h-60 w-auto",
-        style: {
-          bottom: '50px',
-          right: '-50%'
-        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: showBear ? '' : 'hidden',
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+          ref: bear,
+          src: bearImage,
+          className: "absolute h-60 w-auto z-10",
+          style: {
+            bottom: '50px',
+            right: '-30%'
+          }
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: showMidground ? '' : 'hidden',
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+          ref: boulder,
+          src: midgroundImage,
+          className: "absolute h-72 w-auto z-20",
+          style: {
+            bottom: '0',
+            right: '-50%'
+          }
+        })
       })]
     })]
   });
@@ -175,13 +319,168 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
 var Landing = function Landing(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "mx-auto bg-gray-200 overflow-x-scroll relative h-screen w-screen text-6xl flex items-center justify-center",
-    children: "Scroll down for a walk in nature..."
+  var _props = _objectSpread({}, props),
+      foregroundImage = _props.foregroundImage,
+      backgroundImage = _props.backgroundImage,
+      midgroundImage = _props.midgroundImage,
+      bearImage = _props.bearImage,
+      frameImage = _props.frameImage;
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "mx-auto bg-gray-200 overflow-x-scroll relative h-screen w-screen",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
+      className: "text-4xl py-2",
+      children: "Scroll down for a walk in nature..."
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "flex flex-wrap justify-between",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "flex flex-col my-4",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+            className: "text-2xl font-semibold mr-4",
+            htmlFor: "foreground-image",
+            children: "Foreground"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+            type: "checkbox",
+            onChange: function onChange(e) {
+              return foregroundImage.setShow(e.target.checked);
+            },
+            checked: foregroundImage.show
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          type: "file",
+          name: "foreground-image",
+          onChange: function onChange(e) {
+            return foregroundImage.set(URL.createObjectURL(e.target.files[0]));
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "w-full bg-contain bg-no-repeat bg-center",
+          style: {
+            minHeight: '10rem',
+            backgroundImage: "url(".concat(foregroundImage.get, ")")
+          }
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "flex flex-col my-4",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+            className: "text-2xl font-semibold mr-4",
+            htmlFor: "background-image",
+            children: "Background"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+            type: "checkbox",
+            onChange: function onChange(e) {
+              return backgroundImage.setShow(e.target.checked);
+            },
+            checked: backgroundImage.show
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          type: "file",
+          name: "background-image",
+          onChange: function onChange(e) {
+            return backgroundImage.set(URL.createObjectURL(e.target.files[0]));
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "w-full bg-contain bg-no-repeat bg-center",
+          style: {
+            minHeight: '10rem',
+            backgroundImage: "url(".concat(backgroundImage.get, ")")
+          }
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "flex flex-col my-4",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+            className: "text-2xl font-semibold mr-4",
+            htmlFor: "midground-image",
+            children: "Midground"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+            type: "checkbox",
+            onChange: function onChange(e) {
+              return midgroundImage.setShow(e.target.checked);
+            },
+            checked: midgroundImage.show
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          type: "file",
+          name: "midground-image",
+          onChange: function onChange(e) {
+            return midgroundImage.set(URL.createObjectURL(e.target.files[0]));
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "w-full bg-contain bg-no-repeat bg-center",
+          style: {
+            minHeight: '10rem',
+            backgroundImage: "url(".concat(midgroundImage.get, ")")
+          }
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "flex flex-col my-4",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+            className: "text-2xl font-semibold mr-4",
+            htmlFor: "bear-image",
+            children: "Bear"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+            type: "checkbox",
+            onChange: function onChange(e) {
+              return bearImage.setShow(e.target.checked);
+            },
+            checked: bearImage.show
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          type: "file",
+          name: "bear-image",
+          onChange: function onChange(e) {
+            return bearImage.set(URL.createObjectURL(e.target.files[0]));
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "w-full bg-contain bg-no-repeat bg-center",
+          style: {
+            minHeight: '10rem',
+            backgroundImage: "url(".concat(bearImage.get, ")")
+          }
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "flex flex-col my-4",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+            className: "text-2xl font-semibold mr-4",
+            htmlFor: "frame-image",
+            children: "Frame"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+            type: "checkbox",
+            onChange: function onChange(e) {
+              return frameImage.setShow(e.target.checked);
+            },
+            checked: frameImage.show
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          type: "file",
+          name: "frame-image",
+          onChange: function onChange(e) {
+            return frameImage.set(URL.createObjectURL(e.target.files[0]));
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "w-full bg-contain bg-no-repeat bg-center",
+          style: {
+            minHeight: '10rem',
+            backgroundImage: "url(".concat(frameImage.get, ")")
+          }
+        })]
+      })]
+    })]
   });
 };
 
